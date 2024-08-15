@@ -1,0 +1,56 @@
+---
+title: "Loop and Functions"
+format: html
+editor_options: 
+  chunk_output_type: console
+---
+
+# Task 1
+```{r}
+weekdays<- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+
+transects <- c("Transect A", "Transect B", "Transect C")
+```
+
+```{r}
+matrix <- matrix(nrow= length(weekdays), ncol= length(transects))
+
+for (i in 1:length(weekdays)) {
+  for (j in 1:length(transects)) {
+    matrix[i,j] <- print(paste(weekdays[i],"-",transects[j]))
+  }
+}
+```
+
+# Task 2
+```{r}
+force <- function(mass, acceleration) {
+  F <- mass * acceleration
+  print(paste("The resulting force is", F, "Newtons."))
+}
+
+force(mass = 0.7, acceleration = 0.8)
+```
+
+# Task  3
+```{r}
+sci_name <- c("Chanos chanos", "Sphyraena barracuda", "Caranx ignobilis")
+
+common_name <- c("Milkfish", "Great barracuda", "Giant trevally")
+
+a_est <- c(0.0905, 0.0181, 0.0353)
+
+b_est <- c(2.52, 3.27, 3.05)
+
+fish_parms <- data.frame(sci_name, common_name, a_est, b_est)
+```
+
+```{r}
+fish_weight <- function(fish_name, length) {
+  i <- which(fish_parms$common_name == fish_name)
+  W <- fish_parms[i,'a_est']*tot_length^fish_parms[i,'b_est']
+  print(W)
+}
+fish_weight("Milkfish", 10)
+```
+
